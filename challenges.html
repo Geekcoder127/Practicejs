@@ -25,7 +25,46 @@
     font-size: 3vh;
     border: 3px solid black;
     box-sizing: border-box;
-    margin-bottom: 2.5vh;
+  }
+  .btn {
+    width: 20vw;
+    margin: 1.25vw 2.5vw;
+    height: 10vh;
+    padding: 0;
+    font-size: 5vh;
+    background-color: white;
+    border: 2px solid #ccc;
+    transition: border-color 0.25s,box-shadow 0.25s,transform 0.25s;
+    border-radius: 4px;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Roboto";
+    display: inline-block;
+    float: left;
+  }
+  input.btn,p.btn {
+    padding: 0 1.25vh;
+    font-family: Monaco;
+    width: 45vw;
+  }
+  p.btn {
+    line-height: 10vh;
+  }
+  p.btn strong {
+    font-family: "Roboto";
+  }
+  button.btn:hover,input.btn:focus{
+    border-color: rgba(0,0,255,1);
+    box-shadow: 0 0 2vh rgba(0,0,255,0.5);
+    transform: scale(1.02);
+  }
+  button.btn:hover{
+    cursor: pointer;
+  }
+  .btnsection {
+    margin: 0 12.5vw;
+    padding: 1.25vw 0;
+    height: calc(20vh + 5vw);
   }
   </style>
 </head>
@@ -65,6 +104,12 @@
   <div id="editor">function <script id='script1'>document.write(codeDec);</script>
 
 }</div>
+  <div class='btnsection'>
+    <input placeholder="Test Your Function" type="text" class="btn"
+    ><button class='btn'>Test</button
+    ><p class="btn"><strong>Output: </strong></p
+    ><button id='runbtn' class='btn'>Submit</button>
+  </div>
   <footer>
     <p>By <a href="http://github.com/geekcoder127" target="_blank">Geekcoder127</a></p>
   </footer>
