@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto";
+  font-weight: normal;
+}
+h1.logo {
+  font-size: 7.5vh;
+  line-height: 12.5vh;
+  background-color: #dedede;
+  height: 12.5vh;
+  text-align: center;
+}
+h2 {
+  font-size: 5vh;
+  line-height: 10vh;
+  height: 10vh;
+  text-align: left;
+  box-sizing: border-box;
+  width: 60vw;
+  font-weight: bold;
+  margin: 0 20vw;
+}
+footer {
+  display: block;
+  height: 10vh;
+  font-size: 3.5vh;
+  background-color: #dedede;
+  line-height: 10vh;
+  box-sizing: border-box;
+  padding: 0 20vw;
+}
+footer a {
+  text-decoration: none;
+  color: #0000ff;
+}
+footer a:hover{
+  color: #0000cc;
+  text-decoration: underline;
+}
+strong {
+  font-weight: bold;
+}

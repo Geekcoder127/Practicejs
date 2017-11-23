@@ -6,19 +6,59 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Practicejs</title>
   <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
   <style>
+
+  #challenges {
+    width: 60vw;
+    margin: 2.5vh 20vw;
+    box-shadow: 0 0 3vh black;
+    display: block;
+    margin-bottom: 10vh;
+  }
+  #challenges a{
+    width: 100%;
+    display: block;
+    transition: background-color 0.25s;
+    padding: 2.5vh;
+    box-sizing: border-box;
+  }
+  #challenges a:hover{
+    background-color: #dedede;
+    cursor: pointer;
+  }
+  #challenges a h1 {
+    text-align: center;
+    font-size: 5vh;
+    margin-bottom: 1.25vh;
+  }
+  #challenges a p {
+    font-size: 3.5vh;
+    margin: 1vh 0;
+  }
+  #challenges a div {
+    right: 0;
+    top: 0;
+    float: right;
+    width: 7.5vh;
+    height: 7.5vh;
+    background-size: 7.5vh 7.5vh;
+  }
+  #challenges a div.true {
+    background-image: url(done.png);
+  }
 
   </style>
 </head>
 
 <body>
-  <h1>Practicejs</h1>
+  <h1 class='logo'>Practicejs</h1>
   <h2>Challenges</h2>
   <ul id='challenges'>
 
   </ul>
   <footer>
-    <p>By <a href="http://github.com/geekcoder127">Geekcoder127</a></p>
+    <p>By <a href="http://github.com/geekcoder127" target="_blank">Geekcoder127</a></p>
   </footer>
 </body>
 
