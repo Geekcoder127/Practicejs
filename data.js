@@ -24,11 +24,12 @@ var data = [
   },
   {
     name: "Reverse",
-    args: ["word"],
-    test: [["hello","racecar","programming"]],
+    args: ["word","dab"],
+    test: [["hello","racecar","programming"],["hello","racecar","programming"]],
     desc: "Get the Reverse of a Word",
     inst: "Write a program that returns the reverse of the given string.",
     diff: 2
   }
 ];
-var challengeData = localStorage.getItem("data") || [];
+var challengeData = JSON.parse(localStorage.getItem("data")) || [];
+var challengeInfo = JSON.parse(localStorage.getItem("info")) || [];

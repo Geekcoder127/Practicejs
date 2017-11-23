@@ -49,6 +49,7 @@
   }
   p.btn {
     line-height: 10vh;
+    overflow-x: scroll;
   }
   p.btn strong {
     font-family: "Roboto";
@@ -81,7 +82,8 @@
       name: data[currentPage].name,
       inst: data[currentPage].inst,
       args: data[currentPage].args,
-      test: data[currentPage].test
+      test: data[currentPage].test,
+      index: currentPage
     }
   })();
 
@@ -105,10 +107,10 @@
 
 }</div>
   <div class='btnsection'>
-    <input placeholder="Test Your Function" type="text" class="btn"
-    ><button class='btn'>Test</button
-    ><p class="btn"><strong>Output: </strong></p
-    ><button id='runbtn' class='btn'>Submit</button>
+    <input placeholder="Test Your Function" id='testInput' type="text" class="btn"
+    ><button class='btn' id='testbtn'>Test</button
+    ><p class="btn" id='output'><strong>Output: </strong></p
+    ><button id='submitbtn' class='btn'>Submit</button>
   </div>
   <footer>
     <p>By <a href="http://github.com/geekcoder127" target="_blank">Geekcoder127</a></p>
@@ -116,10 +118,61 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
-document.getElementById("script1").outerHTML = "";
+(function(){
+  document.getElementById("script1").outerHTML = "";
+})();
+
+if(challengeInfo[challenge.index]){
+  getId("editor").innerHTML = challengeInfo[challenge.index];
+}
+
 var editor = ace.edit("editor");
 editor.setTheme("ace/theme/light");
 editor.getSession().setMode("ace/mode/javascript");
+
+function getId(id){
+  return document.getElementById(id);
+}
+getId("testbtn").onclick = function(){
+  eval(editor.getValue());
+  getId("output").innerHTML = "<strong>Output: </strong>" + (eval(getId("testInput").value));
+}
+editor.on("change",function(){
+  challengeInfo[challenge.index] = editor.getValue();
+  localStorage.setItem("info",JSON.stringify(challengeInfo));
+  console.log(localStorage.getItem("info"));
+});
+getId("submitbtn").onclick = function(){
+  var argsList = [];
+  var argAmount = 1;
+  (function(){
+    for(var i = 0;i<challenge.test.length;i++){
+      argAmount *= challenge.test[i].length;
+    }
+  })();
+  if(argAmount==1){
+    argAmount=0;
+  }
+  alert(argAmount);
+  var argsStringList = [];
+  for(var i = 0;i<argAmount;i++){
+    parseInt(i.toString(), 10,3).toString(3);
+    argsStringList.push(parseInt(i.toString(), 10,3).toString(3));
+  }
+  argsStringList.forEach(function(item,index){
+    var newArg = [];
+    for(var i = 0;i<challenge.test.length-item.length;i++){
+      newArg.push(0);
+    }
+    for(var i = 0;i<challenge.test.length;i++){
+      if(item[i]!=undefined){
+        newArg.push(parseInt(item[i]));
+      }
+    }
+    argsList.push(newArg);
+  });
+}
+
 </script>
 
 </html>
