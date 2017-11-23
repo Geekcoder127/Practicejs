@@ -8,32 +8,73 @@
   <link rel="stylesheet" href="main.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
   <style>
-
+  .challenge {
+    width: 60vw;
+    margin: 0 20vw;
+  }
+  .challenge *,footer,h1 {
+    font-family: "Roboto";
+  }
+  .challenge h2 {
+    margin: 0;
+  }
+  #editor{
+    width: 75vw;
+    margin: 0 12.5vw;
+    height: 12.5vw;
+    font-size: 3vh;
+    border: 3px solid black;
+    box-sizing: border-box;
+    margin-bottom: 2.5vh;
+  }
   </style>
 </head>
 
 <body>
+  <script src='data.js'></script>
   <h1 class='logo'>Practicejs</h1>
   <script>
-
+  var challenge;
   (function(){
-    var current
+    var currentPage = parseInt(window.location.href.split("?")[1]);
+    challenge = {
+      completed: challengeData[currentPage],
+      name: data[currentPage].name,
+      inst: data[currentPage].inst,
+      args: data[currentPage].args,
+      test: data[currentPage].test
+    }
   })();
 
-  document.write("<div class='" + challenge.completed + "'></div><h2>" + challenge.name + "</h2><p class='diff'><strong>Difficulty: </strong>" + challenge.diff + " / 10</p><p class='inst'>" + challenge.inst + "</p>");
-  </script>
-  <ul id='challenges'>
+  var codeDec = "";
+  var functionName = challenge.name.split(" ").join("").toLowerCase();
+  (function(){
+    codeDec += functionName;
+    codeDec += "(";
+    challenge.args.forEach(function(item,index){
+      codeDec += item;
+      if(index!=challenge.args.length-1){
+        codeDec += ",";
+      }
+    });
+    codeDec += "){";
+  })();
 
-  </ul>
+  document.write("<section class='challenge'><div class='" + challenge.completed + "'></div><h2>" + challenge.name + "</h2><p class='inst'>" + challenge.inst + "</p></section>");
+  </script>
+  <div id="editor">function <script id='script1'>document.write(codeDec);</script>
+
+}</div>
   <footer>
     <p>By <a href="http://github.com/geekcoder127" target="_blank">Geekcoder127</a></p>
   </footer>
 </body>
-
-<script src='data.js'></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
-
+document.getElementById("script1").outerHTML = "";
+var editor = ace.edit("editor");
+editor.setTheme("ace/theme/light");
+editor.getSession().setMode("ace/mode/javascript");
 </script>
 
 </html>

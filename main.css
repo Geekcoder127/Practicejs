@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Roboto";
   font-weight: normal;
 }
 h1.logo {
@@ -40,4 +39,33 @@ footer a:hover{
 }
 strong {
   font-weight: bold;
+}
+.challenge{
+  width: 100%;
+  display: block;
+  transition: background-color 0.25s;
+  padding: 2.5vh;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: black;
+}
+.challenge h1 {
+  text-align: center;
+  font-size: 5vh;
+  margin-bottom: 1.25vh;
+}
+.challenge p {
+  font-size: 3.5vh;
+  margin: 1vh 0;
+}
+.challenge div {
+  right: 0;
+  top: 0;
+  float: right;
+  width: 7.5vh;
+  height: 7.5vh;
+  background-size: 7.5vh 7.5vh;
+}
+.challenge div.true {
+  background-image: url(done.png);
 }

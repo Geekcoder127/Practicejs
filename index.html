@@ -16,38 +16,13 @@
     display: block;
     margin-bottom: 10vh;
   }
-  #challenges a{
-    width: 100%;
-    display: block;
-    transition: background-color 0.25s;
-    padding: 2.5vh;
-    box-sizing: border-box;
-  }
-  #challenges a:hover{
+  .challenge:hover{
     background-color: #dedede;
     cursor: pointer;
   }
-  #challenges a h1 {
-    text-align: center;
-    font-size: 5vh;
-    margin-bottom: 1.25vh;
+  * {
+    font-family: "Roboto"
   }
-  #challenges a p {
-    font-size: 3.5vh;
-    margin: 1vh 0;
-  }
-  #challenges a div {
-    right: 0;
-    top: 0;
-    float: right;
-    width: 7.5vh;
-    height: 7.5vh;
-    background-size: 7.5vh 7.5vh;
-  }
-  #challenges a div.true {
-    background-image: url(done.png);
-  }
-
   </style>
 </head>
 
@@ -69,7 +44,7 @@
   let challengeContEl = document.getElementById("challenges");
   data.forEach(function(item,index){
     let completed = challengeData[index];
-    challengeContEl.innerHTML += "<a id='" + index + "'><div class='" + completed + "'></div><h1>" + item.name + "</h1><p class='desc'>" + item.desc + "</p><p class='diff'><strong>Difficulty: </strong>" + item.diff + " / 10</p>";
+    challengeContEl.innerHTML += "<a class='challenge' href='challenges.html?" + index + "' id='" + index + "'><div class='" + completed + "'></div><h1>" + item.name + "</h1><p class='desc'>" + item.desc + "</p><p class='diff'><strong>Difficulty: </strong>" + item.diff + " / 10</p>";
   });
 })();
 
