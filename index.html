@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Practicejs</title>
+  <link rel="stylesheet" href="main.css">
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <h1>Practicejs</h1>
+  <h2>Challenges</h2>
+  <ul id='challenges'>
+
+  </ul>
+  <footer>
+    <p>By <a href="http://github.com/geekcoder127">Geekcoder127</a></p>
+  </footer>
+</body>
+
+<script src='data.js'></script>
+
+<script>
+(function(){
+  let challengeContEl = document.getElementById("challenges");
+  data.forEach(function(item,index){
+    let completed = challengeData[index];
+    challengeContEl.innerHTML += "<a id='" + index + "'><div class='" + completed + "'></div><h1>" + item.name + "</h1><p class='desc'>" + item.desc + "</p><p class='diff'><strong>Difficulty: </strong>" + item.diff + " / 10</p>";
+  });
+})();
+
+</script>
+
+</html>
