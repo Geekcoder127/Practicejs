@@ -234,7 +234,7 @@ getId("submitbtn").onclick = function(){
     alert("Correct");
     challengeData[challenge.index] = true;
     localStorage.setItem("data",JSON.stringify(challengeData));
-    window.reload();
+    document.querySelector(".challenge div").setAttribute("class","true");
   }else{
     alert("Failure");
   }
