@@ -54,6 +54,9 @@
   p.btn strong {
     font-family: "Roboto";
   }
+  p.btn span {
+    color: red;
+  }
   button.btn:hover,input.btn:focus{
     border-color: rgba(0,0,255,1);
     box-shadow: 0 0 2vh rgba(0,0,255,0.5);
@@ -133,9 +136,30 @@ editor.getSession().setMode("ace/mode/javascript");
 function getId(id){
   return document.getElementById(id);
 }
+function createFunction(functionInfo){
+  var currentData = "";
+  functionInfo.forEach(function(item,index){
+    if (typeof item === 'string' || item instanceof String){
+      currentData += '"';
+      currentData += item;
+      currentData += '"';
+    }else{
+      currentData += item;
+    }
+    if(index != functionInfo.length-1){
+      currentData += ",";
+    }
+  });
+  return currentData;
+}
 getId("testbtn").onclick = function(){
   eval(editor.getValue());
-  getId("output").innerHTML = "<strong>Output: </strong>" + (eval(getId("testInput").value));
+  try {
+    var evalVal = eval(getId("testInput").value);
+  }catch(err){
+    var evalVal = "<span>" + err.message + "</span>";
+  }
+  getId("output").innerHTML = "<strong>Output: </strong>" + evalVal;
 }
 editor.on("change",function(){
   challengeInfo[challenge.index] = editor.getValue();
@@ -153,7 +177,6 @@ getId("submitbtn").onclick = function(){
   if(argAmount==1){
     argAmount=0;
   }
-  alert(argAmount);
   var argsStringList = [];
   for(var i = 0;i<argAmount;i++){
     parseInt(i.toString(), 10,3).toString(3);
@@ -171,6 +194,49 @@ getId("submitbtn").onclick = function(){
     }
     argsList.push(newArg);
   });
+  argsList.forEach(function(item,index){
+    var newArg = [];
+    for(var i = 0;i<item.length;i++){
+      let currentArg = item[i];
+      newArg.push(challenge.test[i][currentArg]);
+    }
+    argsList[index] = newArg;
+  });
+  var answers;
+  if(argsList.length>0){
+    answers = [true,true];
+    argsList.forEach(function(item,index){
+      var testAns = [0,0];
+      testAns[0] = ans(item,challenge.index);
+      var functionData = createFunction(item);
+      try {
+        eval(editor.getValue());
+
+        testAns[1] = eval(functionName + "(" + functionData + ");")
+      }catch(err){
+        testAns[1] = err.message;
+      }
+      if(testAns[0]!=testAns[1]){
+        answers = [false,true];
+      }
+    });
+  }else{
+    answers = [ans([],challenge.index),0];
+    try {
+      eval(editor.getValue());
+      answers[1] = eval(functionName + "();");
+    }catch(err){
+      answers[1] = err.message;
+    }
+  }
+  if(answers[0]==answers[1]){
+    alert("Correct");
+    challengeData[challenge.index] = true;
+    localStorage.setItem("data",JSON.stringify(challengeData));
+    window.reload();
+  }else{
+    alert("Failure");
+  }
 }
 
 </script>

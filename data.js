@@ -4,6 +4,9 @@ function ans(args,num){
       return "Hello, World!";
       break;
     case 1:
+      return args[0] + args[1];
+      break;
+    case 2:
       let word = args[0].split("");
       let newWord = "";
       word.forEach(function(item,index){
@@ -23,9 +26,17 @@ var data = [
     diff: 1
   },
   {
+    name: "Addition",
+    args: ["n1","n2"],
+    test: [["5243","7395","39573"],["6754","286","12"]],
+    desc: "Program to add two integers",
+    inst: "Write a program that returns the sum of n1 and n2.",
+    diff: 1
+  },
+  {
     name: "Reverse",
-    args: ["word","dab"],
-    test: [["hello","racecar","programming"],["hello","racecar","programming"]],
+    args: ["word"],
+    test: [["hello","racecar","programming"]],
     desc: "Get the Reverse of a Word",
     inst: "Write a program that returns the reverse of the given string.",
     diff: 2
