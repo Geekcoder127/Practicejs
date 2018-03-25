@@ -114,7 +114,7 @@
 
 }</div>
   <div class='btnsection'>
-    <input placeholder="Test Your Function" id='testInput' type="text" class="btn"
+    <input spellcheck="false" placeholder="Test Your Function" id='testInput' type="text" class="btn"
     ><button class='btn' id='testbtn'>Test</button
     ><p class="btn" id='output'><strong>Output: </strong></p
     ><button id='submitbtn' class='btn'>Submit</button>
@@ -239,7 +239,7 @@ getId("submitbtn").onclick = function(){
     localStorage.setItem("data",JSON.stringify(challengeData));
     document.querySelector(".challenge div").setAttribute("class","true");
   }else{
-    alert("Failure");
+    alert("Failed");
   }
 }
 
